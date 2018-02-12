@@ -39,10 +39,10 @@ class SportsController < ApplicationController
   end
 
   def bulk_create
-    @sports = bulk_sport_params["sports"]
-    @sports.each do |sport|
-      Sport.create(sport)
-    end
+   @sports = bulk_sport_params
+   @sports.each do |sport|
+    Sport.create(sport)
+   end 
   end 
 
   private
@@ -57,6 +57,6 @@ class SportsController < ApplicationController
     end
 
     def bulk_sport_params
-      params.permit(sports: [:name])
+      params.require(:sports).map{|sport| sport.permit(:name)}
     end 
 end

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  league: one
+  start_date: 2018-02-10 12:15:05
+  end_date: 2018-02-10 12:15:05
+  season_name: MyString
+  season_type: MyString
+  current_season: false
+  season_year: MyString
+
+two:
+  league: two
+  start_date: 2018-02-10 12:15:05
+  end_date: 2018-02-10 12:15:05
+  season_name: MyString
+  season_type: MyString
+  current_season: false
+  season_year: MyString

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208015632) do
+ActiveRecord::Schema.define(version: 20180210171505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "league_years", force: :cascade do |t|
+    t.integer  "league_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "season_name"
+    t.string   "season_type"
+    t.boolean  "current_season"
+    t.string   "season_year"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["league_id"], name: "index_league_years_on_league_id", using: :btree
+  end
 
   create_table "leagues", force: :cascade do |t|
     t.string   "name"
@@ -31,5 +44,6 @@ ActiveRecord::Schema.define(version: 20180208015632) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "league_years", "leagues"
   add_foreign_key "leagues", "sports"
 end

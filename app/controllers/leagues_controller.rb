@@ -46,6 +46,6 @@ class LeaguesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def league_params
-      params.require(:league).permit(:name, :abbreviation, :level)
+      params.require(:league).permit(:name, :abbreviation, :level, :sport_id)
     end
 end
