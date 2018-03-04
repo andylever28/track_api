@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210171505) do
+ActiveRecord::Schema.define(version: 20180304180228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "league_year_id"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.datetime "game_date"
+    t.string   "api_url"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["league_year_id"], name: "index_games_on_league_year_id", using: :btree
+  end
 
   create_table "league_years", force: :cascade do |t|
     t.integer  "league_id"
@@ -32,9 +43,10 @@ ActiveRecord::Schema.define(version: 20180210171505) do
     t.string   "name"
     t.string   "abbreviation"
     t.string   "level"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "sport_id"
+    t.integer  "current_league_year_id"
     t.index ["sport_id"], name: "index_leagues_on_sport_id", using: :btree
   end
 
@@ -44,6 +56,21 @@ ActiveRecord::Schema.define(version: 20180210171505) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "league_id"
+    t.string   "city"
+    t.string   "name"
+    t.string   "abbreviation"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["game_id"], name: "index_teams_on_game_id", using: :btree
+    t.index ["league_id"], name: "index_teams_on_league_id", using: :btree
+  end
+
+  add_foreign_key "games", "league_years"
   add_foreign_key "league_years", "leagues"
   add_foreign_key "leagues", "sports"
+  add_foreign_key "teams", "games"
+  add_foreign_key "teams", "leagues"
 end
