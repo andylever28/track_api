@@ -8,15 +8,16 @@
 
 # db/seeds.rb
 
-Sport.create!([
-  { name: 'Football' },  
-  { name: 'Soccer' },  
-  { name: 'Baseball' },  
-  { name: 'Basketball' },  
-  { name: 'Ice Hockey' }])  
+# Sport.create!([
+#   { name: 'Football' },  
+#   { name: 'Soccer' },  
+#   { name: 'Baseball' },  
+#   { name: 'Basketball' },  
+#   { name: 'Ice Hockey' }])  
   
-  League.create!([
-    { name: 'National Football League', abbreviation: 'NFL', level: 'Professional', sport_id: 41 },
-    { name: 'College Football', abbreviation: 'NCAAF', level: 'College', sport_id: 42  }
-  ])
+#   League.create!([
+#     { name: 'National Football League', abbreviation: 'NFL', level: 'Professional', sport_id: 41 },
+#     { name: 'College Football', abbreviation: 'NCAAF', level: 'College', sport_id: 42  }
+#   ])
   
+  User.create(email: 'user@example.com', nickname: 'UOne', name: 'User One', password: "monkey67")
